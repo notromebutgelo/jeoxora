@@ -1,0 +1,230 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #faf8f5;
+  --foreground: #16112f;
+  --surface: rgba(255, 255, 255, 0.9);
+  --surface-strong: #ffffff;
+  --surface-subtle: rgba(253, 251, 249, 0.92);
+  --surface-inset: rgba(244, 238, 251, 0.7);
+  --primary: #6d28d9;
+  --primary-hover: #7c3aed;
+  --primary-soft: #f3e8ff;
+  --accent: #d4a373;
+  --accent-soft: #f7efe6;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --border: rgba(114, 95, 154, 0.14);
+  --border-strong: rgba(109, 40, 217, 0.22);
+  --text: #16112f;
+  --text-muted: #6b6784;
+  --text-subtle: #a9a5bb;
+  --sidebar: rgba(255, 255, 255, 0.84);
+  --input: rgba(255, 255, 255, 0.92);
+  --shadow-soft: 0 20px 50px rgba(72, 48, 117, 0.08);
+  --shadow-card: 0 28px 70px rgba(80, 60, 114, 0.1);
+  --hero-overlay: rgba(254, 249, 244, 0.66);
+  --hero-glow: rgba(109, 40, 217, 0.14);
+  --heading-font: var(--font-heading), "Iowan Old Style", Georgia, serif;
+  --body-font: var(--font-body), "Segoe UI", sans-serif;
+  --mono-font: var(--font-mono), "Courier New", monospace;
+}
+
+html[data-theme="dark"] {
+  --background: #070a12;
+  --foreground: #f7f3fc;
+  --surface: rgba(11, 16, 32, 0.9);
+  --surface-strong: #0c1020;
+  --surface-subtle: rgba(12, 16, 32, 0.95);
+  --surface-inset: rgba(17, 24, 39, 0.82);
+  --primary: #7c3aed;
+  --primary-hover: #8b5cf6;
+  --primary-soft: rgba(124, 58, 237, 0.18);
+  --accent: #d4a373;
+  --accent-soft: rgba(212, 163, 115, 0.12);
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --border: rgba(164, 152, 194, 0.14);
+  --border-strong: rgba(139, 92, 246, 0.34);
+  --text: #f7f3fc;
+  --text-muted: #aeaac3;
+  --text-subtle: #7c7894;
+  --sidebar: rgba(9, 13, 25, 0.88);
+  --input: rgba(10, 14, 24, 0.95);
+  --shadow-soft: 0 18px 48px rgba(0, 0, 0, 0.28);
+  --shadow-card: 0 30px 72px rgba(0, 0, 0, 0.4);
+  --hero-overlay: rgba(7, 10, 18, 0.5);
+  --hero-glow: rgba(124, 58, 237, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, var(--hero-glow), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(212, 163, 115, 0.1), transparent 24%),
+    linear-gradient(180deg, color-mix(in srgb, var(--background) 98%, #ffffff 2%) 0%, var(--background) 100%);
+  color: var(--text);
+  font-family: var(--body-font);
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--heading-font);
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background: rgba(109, 40, 217, 0.45);
+  color: #ffffff;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+svg {
+  flex-shrink: 0;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--primary) 38%, transparent);
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@layer components {
+  .jeoxora-shell {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    box-shadow: var(--shadow-card);
+    @apply rounded-[28px] backdrop-blur-xl;
+  }
+
+  .jeoxora-panel {
+    border: 1px solid var(--border);
+    background: var(--surface-strong);
+    box-shadow: var(--shadow-soft);
+    @apply rounded-[24px] p-6;
+  }
+
+  .jeoxora-pill {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+    @apply inline-flex items-center rounded-full px-3 py-1 text-[11px] font-medium tracking-[0.18em];
+  }
+
+  .jx-card {
+    border: 1px solid var(--border);
+    background: var(--surface-strong);
+    box-shadow: var(--shadow-soft);
+    @apply rounded-[24px];
+  }
+
+  .jx-subcard {
+    border: 1px solid var(--border);
+    background: var(--surface-subtle);
+    @apply rounded-[20px];
+  }
+
+  .jx-input {
+    border: 1px solid var(--border);
+    background: var(--input);
+    color: var(--text);
+    @apply w-full rounded-[14px] px-4 py-3 text-sm outline-none transition;
+  }
+
+  .jx-input::placeholder {
+    color: var(--text-subtle);
+  }
+
+  .jx-input:focus {
+    border-color: var(--border-strong);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 10%, transparent);
+  }
+
+  .jx-floating-toggle {
+    border: 1px solid var(--border);
+    background: color-mix(in srgb, var(--surface-strong) 90%, transparent);
+    box-shadow: var(--shadow-soft);
+    @apply flex items-center gap-3 rounded-full px-3 py-2 backdrop-blur-xl;
+  }
+
+  .jx-gradient-text {
+    background: linear-gradient(135deg, var(--text) 0%, var(--primary) 68%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .jx-grid-shell {
+    @apply mx-auto max-w-[1440px] px-3 pb-10 pt-3 md:px-4 md:pb-12;
+  }
+
+  .jx-sidebar-item {
+    border: 1px solid transparent;
+    color: var(--text-muted);
+    @apply flex items-center gap-3 rounded-[14px] px-3 py-2.5 text-sm font-medium transition;
+  }
+
+  .jx-sidebar-item:hover {
+    background: color-mix(in srgb, var(--primary) 6%, var(--surface-strong));
+    color: var(--text);
+  }
+
+  .jx-sidebar-item-active {
+    border-color: color-mix(in srgb, var(--primary) 18%, transparent);
+    background: color-mix(in srgb, var(--primary) 10%, var(--surface-strong));
+    color: var(--primary);
+  }
+
+  .jx-tab {
+    color: var(--text-muted);
+    @apply border-b-2 border-transparent pb-3 text-xs font-medium transition;
+  }
+
+  .jx-tab-active {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+}

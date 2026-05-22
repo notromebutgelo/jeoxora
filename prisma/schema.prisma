@@ -1,0 +1,144 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum FlashcardSource {
+  MANUAL
+  AI_GENERATED
+}
+
+enum AIHistoryType {
+  SUMMARIZE
+  EXPLAIN
+  GENERATE_REVIEWER
+  GENERATE_FLASHCARDS
+}
+
+model User {
+  id            String         @id @default(cuid())
+  clerkUserId   String         @unique
+  email         String         @unique
+  firstName     String?
+  lastName      String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  subjects      Subject[]
+  reviewers     Reviewer[]
+  flashcards    Flashcard[]
+  studySessions StudySession[]
+  aiHistory     AIHistory[]
+  uploadedFiles UploadedFile[]
+}
+
+model Subject {
+  id            String         @id @default(cuid())
+  name          String
+  description   String?
+  color         String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  userId        String
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reviewers     Reviewer[]
+  flashcards    Flashcard[]
+  studySessions StudySession[]
+
+  @@index([userId])
+}
+
+model Reviewer {
+  id            String         @id @default(cuid())
+  title         String
+  content       String
+  summary       String?
+  tags          String[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  userId        String
+  subjectId     String?
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subject       Subject?       @relation(fields: [subjectId], references: [id], onDelete: SetNull)
+  flashcards    Flashcard[]
+  aiHistory     AIHistory[]
+  uploadedFiles UploadedFile[]
+
+  @@index([userId])
+  @@index([subjectId])
+}
+
+model Flashcard {
+  id             String          @id @default(cuid())
+  question       String
+  answer         String
+  mastery        Int             @default(0)
+  source         FlashcardSource @default(MANUAL)
+  lastReviewedAt DateTime?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  userId         String
+  subjectId      String?
+  reviewerId     String?
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subject        Subject?        @relation(fields: [subjectId], references: [id], onDelete: SetNull)
+  reviewer       Reviewer?       @relation(fields: [reviewerId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([subjectId])
+  @@index([reviewerId])
+}
+
+model StudySession {
+  id              String    @id @default(cuid())
+  startedAt       DateTime  @default(now())
+  endedAt         DateTime?
+  durationMinutes Int       @default(0)
+  focusScore      Int?
+  notes           String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  userId          String
+  subjectId       String?
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subject         Subject?  @relation(fields: [subjectId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([subjectId])
+}
+
+model AIHistory {
+  id         String        @id @default(cuid())
+  type       AIHistoryType
+  prompt     String
+  response   String
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+  userId     String
+  reviewerId String?
+  user       User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reviewer   Reviewer?     @relation(fields: [reviewerId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([reviewerId])
+}
+
+model UploadedFile {
+  id         String    @id @default(cuid())
+  fileName   String
+  filePath   String
+  mimeType   String?
+  sizeBytes  Int?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  userId     String
+  reviewerId String?
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reviewer   Reviewer? @relation(fields: [reviewerId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([reviewerId])
+}

@@ -1,0 +1,8 @@
+<svg width="640" height="180" viewBox="0 0 640 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="180" rx="28" fill="#0F172A"/>
+  <rect x="30" y="30" width="120" height="120" rx="28" fill="#161F35"/>
+  <path d="M64 58H118V74H82V92H112V108H82V122H118V138H64V58Z" fill="#F8FAFC"/>
+  <circle cx="122" cy="56" r="10" fill="#D4A373"/>
+  <text x="184" y="92" fill="#F8FAFC" font-family="Georgia, serif" font-size="52" letter-spacing="1">Jeoxora</text>
+  <text x="186" y="122" fill="#94A3B8" font-family="Segoe UI, sans-serif" font-size="18" letter-spacing="5">LEGAL ACADEMIC WORKSPACE</text>
+</svg>

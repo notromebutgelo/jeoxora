@@ -10,7 +10,7 @@ type AuthCardProps = {
 
 export function AuthCard({ children, subtitle, title }: AuthCardProps) {
   return (
-    <section className="relative z-10 mx-auto w-full max-w-[420px] rounded-[28px] border border-[color:var(--border)] bg-[color:var(--surface-strong)] p-8 shadow-[var(--shadow-card)] backdrop-blur-xl md:p-10">
+    <section className="relative z-10 mx-auto w-full max-w-[420px] rounded-[16px] border border-[color:var(--border)] bg-[color:var(--surface-strong)] p-8 shadow-[var(--shadow-card)] backdrop-blur-xl md:p-10">
       <BrandMark compact className="justify-center" />
       <div className="mt-8 text-center">
         <h1 className="text-[38px] leading-tight text-[color:var(--text)]">

@@ -45,42 +45,46 @@ const trustMarks = ["Lex", "Juris", "Bar", "Case", "Rule", "Civ"];
 
 export default function HomePage() {
   return (
-    <main className="jx-grid-shell">
-      <section className="jeoxora-shell overflow-hidden">
-        <header className="flex h-[72px] items-center justify-between px-5 md:px-6">
-          <BrandMark compact />
-          <nav className="hidden items-center gap-8 text-sm font-medium text-[color:var(--text-muted)] lg:flex">
-            <Link href="#features">Features</Link>
-            <Link href="#pricing">Pricing</Link>
-            <button className="flex items-center gap-1" type="button">
-              Resources <ChevronDown className="h-4 w-4" />
-            </button>
-            <Link href="#about">About</Link>
-          </nav>
-          <div className="flex items-center gap-3">
-            <Button asChild size="sm" variant="outline">
-              <Link href="/login">Login</Link>
-            </Button>
-            <Button asChild size="sm">
-              <Link href="/register">Get Started</Link>
-            </Button>
+    <main className="w-full overflow-x-hidden pb-8">
+      <section className="min-h-screen border-b border-[color:var(--border)]">
+        <header className="border-b border-[color:var(--border)]">
+          <div className="mx-auto flex h-[78px] w-full max-w-[1920px] items-center justify-between px-6 md:px-8 xl:px-10">
+            <BrandMark compact />
+            <nav className="hidden items-center gap-8 text-sm font-medium text-[color:var(--text-muted)] lg:flex">
+              <Link href="#features">Features</Link>
+              <Link href="#pricing">Pricing</Link>
+              <button className="flex items-center gap-1" type="button">
+                Resources <ChevronDown className="h-4 w-4" />
+              </button>
+              <Link href="#about">About</Link>
+            </nav>
+            <div className="flex items-center gap-3">
+              <Button asChild size="sm" variant="outline">
+                <Link href="/login">Login</Link>
+              </Button>
+              <Button asChild size="sm">
+                <Link href="/register">Get Started</Link>
+              </Button>
+            </div>
           </div>
         </header>
 
-        <div className="grid border-t border-[color:var(--border)] lg:grid-cols-[minmax(0,540px)_1fr]">
-          <div className="px-6 pb-8 pt-8 md:px-10 md:pb-12 md:pt-12">
+        <div className="relative isolate mx-auto grid w-full max-w-[1920px] lg:min-h-[calc(100vh-78px)] lg:grid-cols-[minmax(0,620px)_1fr]">
+          <div aria-hidden="true" className="jx-landing-stage absolute inset-0" />
+
+          <div className="relative z-10 px-7 pb-12 pt-10 md:px-12 md:pb-16 md:pt-14 xl:px-14 xl:pb-20 xl:pt-20">
             <span className="jeoxora-pill">AI-Powered Legal Academic Workspace</span>
-            <h1 className="mt-6 max-w-[520px] text-[58px] leading-[0.96] text-[color:var(--text)] md:text-[72px]">
+            <h1 className="mt-6 max-w-[560px] text-[58px] leading-[0.96] text-[color:var(--text)] md:text-[76px] xl:text-[84px]">
               Master Law
               <br />
               <span className="jx-gradient-text">Intelligently.</span>
             </h1>
-            <p className="mt-6 max-w-[420px] text-[15px] leading-8 text-[color:var(--text-muted)]">
+            <p className="mt-7 max-w-[470px] text-[16px] leading-8 text-[color:var(--text-muted)]">
               The all-in-one workspace for law students, bar reviewees, and
               future legal professionals. AI-powered. Focus-driven. Built for
               mastery.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-10 flex flex-wrap gap-4">
               <Button asChild className="min-w-[132px]" size="lg">
                 <Link href="/register">Start Free</Link>
               </Button>
@@ -92,14 +96,14 @@ export default function HomePage() {
               </Button>
             </div>
 
-            <div className="mt-10">
+            <div className="mt-12">
               <p className="text-xs font-medium text-[color:var(--text-muted)]">
                 Trusted by future legal professionals
               </p>
               <div className="mt-4 flex flex-wrap gap-3">
                 {trustMarks.map((mark) => (
                   <span
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--border)] bg-[color:var(--surface-subtle)] font-[var(--font-mono)] text-xs text-[color:var(--text-muted)]"
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-[color:var(--border)] bg-[color:var(--surface-subtle)] font-[var(--font-mono)] text-xs text-[color:var(--text-muted)]"
                     key={mark}
                   >
                     {mark}
@@ -109,51 +113,67 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="relative min-h-[430px] overflow-hidden border-t border-[color:var(--border)] lg:min-h-[600px] lg:border-l lg:border-t-0">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.16),transparent_48%)]" />
-            <div className="absolute inset-0 bg-[color:var(--hero-overlay)]" />
-            <Image
-              alt="Lady Justice in a classical hall"
-              className="object-cover object-center"
-              fill
-              priority
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              src="/bglanding.png"
-            />
+          <div className="relative min-h-[540px] overflow-hidden lg:min-h-[calc(100vh-78px)] lg:overflow-visible">
             <div
-              className="absolute inset-x-0 bottom-0 h-28"
-              style={{
-                background:
-                  "linear-gradient(to top, var(--surface-strong) 0%, rgba(255,255,255,0) 100%)",
-              }}
-            />
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-y-0 -left-[4%] right-0 md:-left-[6%] lg:-left-[16%] xl:-left-[20%]"
+            >
+              <div
+                className="absolute right-[16%] top-[10%] h-[64%] w-[56%] rounded-full blur-3xl"
+                style={{
+                  background:
+                    "radial-gradient(circle, var(--landing-hero-spotlight) 0%, transparent 72%)",
+                }}
+              />
+              <div className="jx-landing-ring absolute right-[12%] top-1/2 h-[74%] w-[70%] -translate-y-1/2 rounded-full" />
+              <div className="jx-landing-image-wrap absolute inset-0">
+                <Image
+                  alt="Lady Justice in a classical hall"
+                  className="jx-landing-image scale-[1.03] object-[center_26%] lg:object-[center_22%] xl:object-[center_20%]"
+                  fill
+                  priority
+                  sizes="(min-width: 1536px) 58vw, (min-width: 1024px) 52vw, 100vw"
+                  src="/bglanding.png"
+                />
+              </div>
+              <div className="jx-landing-particles absolute inset-0 opacity-80" />
+              <div className="jx-landing-left-fade absolute inset-y-0 left-0 w-[42%] sm:w-[34%] lg:w-[40%]" />
+              <div className="jx-landing-vignette absolute inset-y-0 right-0 w-[22%]" />
+              <div className="jx-landing-bottom-fade absolute inset-x-0 bottom-0 h-32" />
+            </div>
           </div>
         </div>
+      </section>
 
-        <div
-          className="grid gap-3 border-t border-[color:var(--border)] p-4 md:grid-cols-2 xl:grid-cols-5"
-          id="features"
-        >
-          {featureCards.map((feature) => {
-            const Icon = feature.icon;
+      <section
+        className="mx-auto grid w-full max-w-[1920px] gap-4 px-4 py-5 md:grid-cols-2 md:px-6 xl:grid-cols-5 xl:px-8"
+        id="features"
+      >
+        {featureCards.map((feature) => {
+          const Icon = feature.icon;
 
-            return (
-              <article className="jx-subcard p-5" key={feature.title}>
-                <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[color:var(--primary-soft)] text-[color:var(--primary)]">
-                  <Icon className="h-5 w-5" />
-                </span>
-                <h2 className="mt-4 text-lg text-[color:var(--text)]">
-                  {feature.title}
-                </h2>
-                <p className="mt-2 text-sm leading-6 text-[color:var(--text-muted)]">
-                  {feature.description}
-                </p>
-              </article>
-            );
-          })}
-        </div>
+          return (
+            <article
+              className="border border-[color:var(--border)] bg-[color:var(--surface-strong)] p-5 shadow-[var(--shadow-soft)] md:p-6"
+              key={feature.title}
+              style={{ borderRadius: "18px" }}
+            >
+              <span className="flex h-11 w-11 items-center justify-center rounded-[14px] bg-[color:var(--primary-soft)] text-[color:var(--primary)] shadow-[inset_0_1px_0_rgba(255,255,255,0.14)]">
+                <Icon className="h-5 w-5" />
+              </span>
+              <h2 className="mt-5 text-[22px] leading-tight text-[color:var(--text)]">
+                {feature.title}
+              </h2>
+              <p className="mt-3 text-sm leading-7 text-[color:var(--text-muted)]">
+                {feature.description}
+              </p>
+            </article>
+          );
+        })}
+      </section>
 
-        <div className="flex items-center justify-between border-t border-[color:var(--border)] px-5 py-4 text-sm text-[color:var(--text-muted)] md:px-6">
+      <div className="mx-auto w-full max-w-[1920px] px-4 md:px-6 xl:px-8">
+        <section className="flex flex-col gap-3 border-t border-[color:var(--border)] px-1 py-6 text-sm text-[color:var(--text-muted)] md:flex-row md:items-center md:justify-between">
           <span>Built for law students, bar reviewees, and legal mastery.</span>
           <Link
             className="inline-flex items-center gap-2 font-medium text-[color:var(--primary)]"
@@ -161,8 +181,8 @@ export default function HomePage() {
           >
             Explore workspace <ArrowRight className="h-4 w-4" />
           </Link>
-        </div>
-      </section>
+        </section>
+      </div>
     </main>
   );
 }

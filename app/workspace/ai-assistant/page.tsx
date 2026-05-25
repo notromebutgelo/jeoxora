@@ -1,9 +1,11 @@
 import {
   ExternalLink,
   Info,
+  MessageSquareText,
   SendHorizonal,
   Sparkles,
 } from "lucide-react";
+import { EmptyState } from "@/components/layouts/empty-state";
 
 const suggestedPrompts = [
   "Explain mens rea",
@@ -14,10 +16,10 @@ const suggestedPrompts = [
 
 export default function AiAssistantPage() {
   return (
-    <section className="jx-card p-5 md:p-6">
-      <div className="flex flex-wrap items-start justify-between gap-4">
+    <div className="space-y-4">
+      <section className="flex flex-wrap items-start justify-between gap-4 px-1 py-2">
         <div>
-          <h1 className="text-[34px] leading-tight text-[color:var(--text)]">
+          <h1 className="text-[38px] leading-tight text-[color:var(--text)]">
             AI Assistant
           </h1>
           <p className="mt-2 text-sm text-[color:var(--text-muted)]">
@@ -38,14 +40,14 @@ export default function AiAssistantPage() {
             <Info className="h-4 w-4" />
           </button>
         </div>
-      </div>
+      </section>
 
-      <div className="mt-5 grid gap-3 xl:grid-cols-[1.35fr_0.7fr]">
-        <div className="rounded-[22px] border border-[color:var(--border)] bg-[color:var(--surface-subtle)] p-5">
+      <section className="grid gap-4 xl:grid-cols-[1.35fr_0.7fr]">
+        <div className="jx-card p-6">
           <div className="rounded-[16px] bg-[color:var(--primary)] px-4 py-3 text-sm font-medium text-white shadow-[0_12px_30px_rgba(109,40,217,0.26)]">
             Explain the doctrine of stare decisis in simple terms.
           </div>
-          <div className="mt-5 flex gap-3 rounded-[20px] border border-[color:var(--border)] bg-[color:var(--surface-strong)] p-4">
+          <div className="mt-5 flex gap-3 rounded-[20px] border border-[color:var(--border)] bg-[color:var(--surface-subtle)] p-4">
             <span className="mt-1 flex h-10 w-10 items-center justify-center rounded-full bg-[color:var(--primary-soft)] text-[color:var(--primary)]">
               <Sparkles className="h-4 w-4" />
             </span>
@@ -67,7 +69,7 @@ export default function AiAssistantPage() {
               </ul>
             </div>
           </div>
-          <div className="mt-5 flex items-center gap-2 rounded-[18px] border border-[color:var(--border)] bg-[color:var(--surface-strong)] px-4 py-3">
+          <div className="mt-5 flex items-center gap-2 rounded-[18px] border border-[color:var(--border)] bg-[color:var(--surface-subtle)] px-4 py-3">
             <input
               className="w-full bg-transparent text-sm text-[color:var(--text)] outline-none placeholder:text-[color:var(--text-subtle)]"
               placeholder="Ask anything legal..."
@@ -84,24 +86,32 @@ export default function AiAssistantPage() {
           </p>
         </div>
 
-        <aside className="rounded-[22px] border border-[color:var(--border)] bg-[color:var(--surface-subtle)] p-5">
+        <aside className="jx-card p-5">
           <p className="text-[11px] uppercase tracking-[0.16em] text-[color:var(--text-subtle)]">
             Suggested Prompts
           </p>
           <div className="mt-4 space-y-2">
-            {suggestedPrompts.map((prompt) => (
-              <button
-                className="flex w-full items-center gap-3 rounded-[16px] border border-[color:var(--border)] bg-[color:var(--surface-strong)] px-4 py-3 text-left text-sm text-[color:var(--text-muted)]"
-                key={prompt}
-                type="button"
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--primary)]" />
-                {prompt}
-              </button>
-            ))}
+            {suggestedPrompts.length > 0 ? (
+              suggestedPrompts.map((prompt) => (
+                <button
+                  className="flex w-full items-center gap-3 rounded-[16px] border border-[color:var(--border)] bg-[color:var(--surface-subtle)] px-4 py-3 text-left text-sm text-[color:var(--text-muted)]"
+                  key={prompt}
+                  type="button"
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--primary)]" />
+                  {prompt}
+                </button>
+              ))
+            ) : (
+              <EmptyState
+                description="Suggested prompts will appear after your study context is connected."
+                icon={MessageSquareText}
+                title="No suggestions yet"
+              />
+            )}
           </div>
         </aside>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

@@ -6,6 +6,7 @@ type BrandMarkProps = {
   className?: string;
   compact?: boolean;
   href?: string;
+  iconOnly?: boolean;
   showTagline?: boolean;
 };
 
@@ -13,6 +14,7 @@ export function BrandMark({
   className,
   compact = false,
   href = "/",
+  iconOnly = false,
   showTagline = false,
 }: BrandMarkProps) {
   const content = (
@@ -20,7 +22,7 @@ export function BrandMark({
       <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[color:var(--primary-soft)] text-[color:var(--primary)]">
         <Scale className="h-5 w-5" strokeWidth={1.8} />
       </span>
-      <div className="leading-none">
+      <div className={cn("leading-none", iconOnly && "hidden")}>
         <p
           className={cn(
             "font-[var(--font-heading)] tracking-[0.14em] text-[color:var(--text)]",
@@ -30,7 +32,7 @@ export function BrandMark({
           JEOXORA
         </p>
         {showTagline ? (
-          <p className="mt-1 text-[11px] font-medium text-[color:var(--muted)]">
+          <p className="mt-1 text-[11px] font-medium text-[color:var(--text-muted)]">
             Master Law Intelligently.
           </p>
         ) : null}

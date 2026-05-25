@@ -28,6 +28,43 @@
   --shadow-card: 0 28px 70px rgba(80, 60, 114, 0.1);
   --hero-overlay: rgba(254, 249, 244, 0.66);
   --hero-glow: rgba(109, 40, 217, 0.14);
+  --landing-hero-stage:
+    linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.96) 0%,
+      rgba(251, 247, 243, 0.92) 30%,
+      rgba(248, 243, 238, 0.68) 54%,
+      rgba(248, 243, 238, 0.18) 78%,
+      rgba(248, 243, 238, 0.04) 100%
+    );
+  --landing-hero-left-fade:
+    linear-gradient(
+      90deg,
+      rgba(250, 248, 245, 0.98) 0%,
+      rgba(250, 248, 245, 0.92) 34%,
+      rgba(250, 248, 245, 0.64) 58%,
+      rgba(250, 248, 245, 0.16) 82%,
+      rgba(250, 248, 245, 0) 100%
+    );
+  --landing-hero-vignette:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(247, 240, 232, 0.16) 58%,
+      rgba(241, 230, 220, 0.36) 100%
+    );
+  --landing-hero-bottom:
+    linear-gradient(
+      to top,
+      rgba(255, 255, 255, 0.94) 0%,
+      rgba(255, 255, 255, 0.54) 32%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  --landing-hero-filter: saturate(0.88) contrast(1.04) brightness(1.05);
+  --landing-hero-dust: rgba(193, 148, 84, 0.22);
+  --landing-hero-ring: rgba(140, 92, 248, 0.34);
+  --landing-hero-ring-glow: rgba(140, 92, 248, 0.18);
+  --landing-hero-spotlight: rgba(160, 115, 255, 0.14);
   --heading-font: var(--font-heading), "Iowan Old Style", Georgia, serif;
   --body-font: var(--font-body), "Segoe UI", sans-serif;
   --mono-font: var(--font-mono), "Courier New", monospace;
@@ -59,6 +96,43 @@ html[data-theme="dark"] {
   --shadow-card: 0 30px 72px rgba(0, 0, 0, 0.4);
   --hero-overlay: rgba(7, 10, 18, 0.5);
   --hero-glow: rgba(124, 58, 237, 0.18);
+  --landing-hero-stage:
+    linear-gradient(
+      120deg,
+      rgba(8, 11, 22, 0.98) 0%,
+      rgba(8, 11, 22, 0.95) 30%,
+      rgba(8, 11, 22, 0.72) 54%,
+      rgba(8, 11, 22, 0.22) 78%,
+      rgba(8, 11, 22, 0.04) 100%
+    );
+  --landing-hero-left-fade:
+    linear-gradient(
+      90deg,
+      rgba(8, 11, 22, 0.99) 0%,
+      rgba(8, 11, 22, 0.94) 32%,
+      rgba(8, 11, 22, 0.74) 58%,
+      rgba(8, 11, 22, 0.24) 82%,
+      rgba(8, 11, 22, 0) 100%
+    );
+  --landing-hero-vignette:
+    linear-gradient(
+      90deg,
+      rgba(7, 10, 18, 0) 0%,
+      rgba(7, 10, 18, 0.1) 52%,
+      rgba(7, 10, 18, 0.48) 100%
+    );
+  --landing-hero-bottom:
+    linear-gradient(
+      to top,
+      rgba(12, 16, 32, 0.96) 0%,
+      rgba(12, 16, 32, 0.58) 30%,
+      rgba(12, 16, 32, 0) 100%
+    );
+  --landing-hero-filter: saturate(0.9) contrast(1.06) brightness(0.92);
+  --landing-hero-dust: rgba(236, 176, 90, 0.18);
+  --landing-hero-ring: rgba(161, 102, 255, 0.5);
+  --landing-hero-ring-glow: rgba(124, 58, 237, 0.28);
+  --landing-hero-spotlight: rgba(124, 58, 237, 0.18);
 }
 
 * {
@@ -97,7 +171,7 @@ h2,
 h3,
 h4 {
   font-family: var(--heading-font);
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 
 ::selection {
@@ -137,14 +211,14 @@ svg {
     border: 1px solid var(--border);
     background: var(--surface);
     box-shadow: var(--shadow-card);
-    @apply rounded-[28px] backdrop-blur-xl;
+    @apply rounded-[16px] backdrop-blur-xl;
   }
 
   .jeoxora-panel {
     border: 1px solid var(--border);
     background: var(--surface-strong);
     box-shadow: var(--shadow-soft);
-    @apply rounded-[24px] p-6;
+    @apply rounded-[16px] p-6;
   }
 
   .jeoxora-pill {
@@ -158,13 +232,13 @@ svg {
     border: 1px solid var(--border);
     background: var(--surface-strong);
     box-shadow: var(--shadow-soft);
-    @apply rounded-[24px];
+    @apply rounded-[16px];
   }
 
   .jx-subcard {
     border: 1px solid var(--border);
     background: var(--surface-subtle);
-    @apply rounded-[20px];
+    @apply rounded-[14px];
   }
 
   .jx-input {
@@ -183,13 +257,6 @@ svg {
     box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 10%, transparent);
   }
 
-  .jx-floating-toggle {
-    border: 1px solid var(--border);
-    background: color-mix(in srgb, var(--surface-strong) 90%, transparent);
-    box-shadow: var(--shadow-soft);
-    @apply flex items-center gap-3 rounded-full px-3 py-2 backdrop-blur-xl;
-  }
-
   .jx-gradient-text {
     background: linear-gradient(135deg, var(--text) 0%, var(--primary) 68%);
     -webkit-background-clip: text;
@@ -197,8 +264,67 @@ svg {
     color: transparent;
   }
 
+  .jx-landing-stage {
+    background:
+      radial-gradient(circle at 76% 38%, var(--landing-hero-spotlight) 0%, transparent 30%),
+      radial-gradient(circle at 84% 62%, color-mix(in srgb, var(--accent) 16%, transparent) 0%, transparent 28%),
+      var(--landing-hero-stage);
+  }
+
+  .jx-landing-image-wrap {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.88) 16%,
+      #000000 32%,
+      #000000 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.88) 16%,
+      #000000 32%,
+      #000000 100%
+    );
+  }
+
+  .jx-landing-image {
+    filter: var(--landing-hero-filter);
+    @apply object-cover object-center;
+  }
+
+  .jx-landing-left-fade {
+    background: var(--landing-hero-left-fade);
+  }
+
+  .jx-landing-vignette {
+    background: var(--landing-hero-vignette);
+  }
+
+  .jx-landing-bottom-fade {
+    background: var(--landing-hero-bottom);
+  }
+
+  .jx-landing-ring {
+    border: 1.5px solid var(--landing-hero-ring);
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--landing-hero-ring) 25%, transparent) inset,
+      0 0 70px var(--landing-hero-ring-glow);
+  }
+
+  .jx-landing-particles {
+    background-image:
+      radial-gradient(circle at 12% 64%, var(--landing-hero-dust) 0 1.2px, transparent 1.9px),
+      radial-gradient(circle at 28% 22%, var(--landing-hero-dust) 0 1px, transparent 1.8px),
+      radial-gradient(circle at 44% 18%, var(--landing-hero-dust) 0 1.2px, transparent 2px),
+      radial-gradient(circle at 62% 12%, var(--landing-hero-dust) 0 1.1px, transparent 1.8px),
+      radial-gradient(circle at 74% 28%, var(--landing-hero-dust) 0 1.4px, transparent 2.1px),
+      radial-gradient(circle at 84% 14%, var(--landing-hero-dust) 0 1.1px, transparent 1.9px),
+      radial-gradient(circle at 92% 40%, var(--landing-hero-dust) 0 1.2px, transparent 2px);
+  }
+
   .jx-grid-shell {
-    @apply mx-auto max-w-[1440px] px-3 pb-10 pt-3 md:px-4 md:pb-12;
+    @apply mx-auto w-full max-w-[1880px] px-2 pb-6 pt-2 md:px-3 md:pb-8 lg:px-4;
   }
 
   .jx-sidebar-item {

@@ -1,5 +1,5 @@
-import { LoadingState } from "@/components/layouts/loading-state";
+import { WorkspacePageSkeleton } from "@/components/layouts/workspace-skeleton";
 
 export default function WorkspaceLoadingPage() {
-  return <LoadingState />;
+  return <WorkspacePageSkeleton />;
 }

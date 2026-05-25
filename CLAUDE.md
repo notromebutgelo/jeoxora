@@ -556,13 +556,16 @@ Completed:
 - [x] Core UI starter components have been added
 - [x] Shared loading-state scaffolds exist
 - [x] Dashboard, knowledge editor, flashcards, AI assistant, focus mode, analytics, and settings screens now have reference-based UI scaffolds
+- [x] Route-level workspace skeleton loaders have been added for dashboard, knowledge, flashcards, focus, AI assistant, analytics, and settings
+- [x] Shared polished empty-state component exists and is wired into data-driven workspace sections
+- [x] Responsive layout hardening has been applied to the workspace shell and major workspace page grids
+- [x] Component-level overflow fixes have been applied to dense analytics, flashcards, and focus layouts
 
 Still needed:
 
-- [ ] Finish fine-grained visual polish against the exact reference measurements
-- [ ] Add skeleton loaders to real data-driven feature flows
-- [ ] Add polished empty states per feature screen where live data can be absent
-- [ ] Perform responsive QA across mobile, tablet, and desktop
+- [ ] Finish final fine-grained visual polish against the exact reference measurements
+- [ ] Perform browser-based responsive QA across mobile, tablet, and desktop
+- [ ] Adjust any spacing, overflow, chart, or card issues found during responsive QA
 
 ### Phase 3 — Authentication
 

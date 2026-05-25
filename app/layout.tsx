@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono, Playfair_Display } from "next/font/google";
 import type { ReactNode } from "react";
 import { ThemeProvider } from "@/components/layouts/theme-provider";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { env } from "@/lib/env";
 import "./globals.css";
 
@@ -60,7 +59,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
         />
         <ThemeProvider>
           {children}
-          <ThemeToggle />
         </ThemeProvider>
       </body>
     </html>

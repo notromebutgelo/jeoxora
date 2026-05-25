@@ -103,10 +103,10 @@ const heatmapRows = [
 
 const subjectDistribution = [
   { color: "#7C3AED", detail: "7h 30m", label: "Constitutional Law", value: 40 },
-  { color: "#D4A373", detail: "3h 45m", label: "Civil Law", value: 20 },
-  { color: "#818CF8", detail: "3h 20m", label: "Criminal Law", value: 18 },
-  { color: "#8B5CF6", detail: "2h 15m", label: "Evidence", value: 12 },
-  { color: "#94A3B8", detail: "1h 55m", label: "Others", value: 10 },
+  { color: "#F97316", detail: "3h 45m", label: "Civil Law", value: 20 },
+  { color: "#3B82F6", detail: "3h 20m", label: "Criminal Law", value: 18 },
+  { color: "#A78BFA", detail: "2h 15m", label: "Evidence", value: 12 },
+  { color: "#64748B", detail: "1h 55m", label: "Others", value: 10 },
 ];
 
 const retentionValues = [
@@ -180,7 +180,7 @@ export default function AnalyticsPage() {
       </section>
 
       <section className="grid gap-6 xl:grid-cols-[1.06fr_0.94fr]">
-        <article className="jx-card flex min-h-[358px] flex-col p-6">
+        <article className="jx-card flex min-h-[358px] flex-col p-5">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex min-w-0 items-start gap-4">
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] bg-[color:var(--primary-soft)] text-[color:var(--primary)] shadow-[inset_0_1px_0_rgba(255,255,255,0.16)]">
@@ -229,7 +229,7 @@ export default function AnalyticsPage() {
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] bg-[color:var(--primary-soft)] text-[color:var(--primary)] shadow-[inset_0_1px_0_rgba(255,255,255,0.16)]">
                 <PieChart className="h-5 w-5" />
               </span>
-              <div>
+              <div className="min-w-0">
                 <h2 className="text-[28px] leading-tight text-[color:var(--text)]">
                   Subject Distribution
                 </h2>
@@ -247,7 +247,7 @@ export default function AnalyticsPage() {
           </div>
           {subjectDistribution.length > 0 ? (
             <SubjectDistributionChart
-              className="mt-6"
+              className="mt-4"
               totalLabel="Total Focus"
               totalValue="18h 45m"
               values={subjectDistribution}
@@ -260,13 +260,13 @@ export default function AnalyticsPage() {
               title="No subject distribution"
             />
           )}
-          <div className="mt-auto flex flex-wrap items-center gap-4 border-t border-[color:var(--border)] pt-4 text-xs text-[color:var(--text-muted)]">
+          <div className="mt-auto flex flex-wrap items-center gap-4 border-t border-[color:var(--border)] pt-3 text-xs text-[color:var(--text-muted)]">
             <span className="flex items-center gap-2">
               <Circle className="h-2.5 w-2.5 fill-[color:var(--success)] text-[color:var(--success)]" />
               5 Subjects
             </span>
             <span className="flex items-center gap-2">
-              <Circle className="h-2.5 w-2.5 fill-[color:var(--text-subtle)] text-[color:var(--text-subtle)]" />
+              <Circle className="h-2.5 w-2.5 fill-[color:var(--primary)] text-[color:var(--primary)]" />
               Updated just now
             </span>
           </div>
